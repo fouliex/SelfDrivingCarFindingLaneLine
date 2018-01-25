@@ -14,7 +14,7 @@ In this project,lane lines can be detected in images or videos using Python and 
  # The Lane Finding Pipeline
 
  The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and applyied Gaussian smoothing to clean up any noise.
- ![original image](./misc/original.png)
+ ![original image](https://github.com/fouliex/SelfDrivingCarFindingLaneLine/blob/master/misc/original.jpg)
 
 ###### Convert to Grayscale
 ```python
