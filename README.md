@@ -2,18 +2,16 @@
 
 <img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
-Overview
----
+# Overview
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are, act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+When we drive, we use our eyes to decide where to go. The lines on the road that show us where the lanes are, act as our constant reference for where to steer the vehicle. Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
-In this project, lane lines can be detected in images or videos using Python and OpenCV.  OpenCV means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
+In this project, lane lines can be detected in images or videos using `Python` and `OpenCV`.  `OpenCV` means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
 
  # The Lane Finding Pipeline
+The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and to second step is to apply Gaussian smoothing to clean up any noise.
 
  ![original image](./misc/original.jpg)
-
- The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and to apply Gaussian smoothing to clean up any noise.
 ###### Convert to Grayscale
 ```python
 import cv2  #bringing in OpenCV libraries
@@ -30,9 +28,9 @@ A larger kernel_size implies averaging, or smoothing, over a larger area.
 
 ![grayscale image](./misc/grayscale.jpg)
 
-The second step is to use OpenCV Canny Edge detector.By applying Canny to the gray image we get the edges.
+The third step is to apply OpenCV Canny Edge Detector. By applying Canny to the gray image we get the edges from the image.
 The Canny algorithm  will first detect strong edges pixel above the `high threshold` and reject pixels below the `low threshold`.
- Moreover, pixels with values between the `low_threshold` and `high_threshold` are included as long as they are connected to strong edges. The output edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
+Moreover, pixels with values between the `low_threshold` and `high_threshold` are included as long as they are connected to strong edges. The output edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
 
 ###### Apply Canny to get the edges images
 ```python
@@ -41,7 +39,7 @@ edges = cv2.Canny(gray, low_threshold, high_threshold)
 
 ![canny edge image](./misc/cannyEdge.jpg)
 
-Then we apply a polygon mask to remove unwanted areas in the image, areas that are unlikely to contain the lane lines.
+The fourth is to apply a polygon mask to remove unwanted areas in the image, such as, areas that are unlikely to contain the lane lines.
 
 ###### Four Side Polygon on Canny Edge image
 ```python
@@ -52,7 +50,7 @@ Then we apply a polygon mask to remove unwanted areas in the image, areas that a
     masked_edges = cv2.bitwise_and(canny_edges, mask_edges)
 ```
 
-At last, we use the Hough Transform to identify the lane lines.In Hough space, we can represent our "x vs. y" line as a point in "m vs. b" instead. The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
+The fith step is to apply Hough Transform to identify the lane lines. In Hough space, we can represent our "x vs. y" line as a point in "m vs. b" instead. The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
 
 ######
 ```python
@@ -99,6 +97,5 @@ The pipeline will not work:
 2. Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7)
 3. Open the code in a Jupyter Notebook.Jupyter is an Ipython notebook where we can run blocks of code and see results interactively.  All the code for this project is contained in  the Jupyter notebook.
 To start Jupyter in your browser, use terminal to navigate to the project directory and then run the following command at the terminal prompt (be sure Python 3 carnd-term1 environment is activated)
-
-`> jupyter notebook`
+* `> jupyter notebook`
 
