@@ -53,9 +53,9 @@ The fourth is to apply a polygon mask to remove unwanted areas in the image, suc
     masked_edges = cv2.bitwise_and(canny_edges, mask_edges)
 ```
 
-The fith step is to apply `Hough Transform` to identify the lane lines. In `Hough space`, we can represent our "x vs. y" line as a point in "m vs. b". 
+The fifth step is to apply `Hough Transform` to identify the lane lines. In `Hough space`, we can represent our "x vs. y" line as a point in "m vs. b".
 
-![Hough space image](./misc/hough_space.jpg)
+![Hough space image](./misc/hough_space.png)
 
 The `Hough Transform` is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
 
