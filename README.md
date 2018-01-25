@@ -40,7 +40,7 @@ Moreover, pixels with values between the `low_threshold` and `high_threshold` ar
 edges = cv2.Canny(gray, low_threshold, high_threshold)
 ```
 
-![canny edge image](./misc/cannyEdge.jpg)
+![canny edge image](./misc/canny_edge.jpg)
 
 The fourth is to apply a polygon mask to remove unwanted areas in the image, such as, areas that are unlikely to contain the lane lines.
 
@@ -55,9 +55,9 @@ The fourth is to apply a polygon mask to remove unwanted areas in the image, suc
 
 The fith step is to apply `Hough Transform` to identify the lane lines. In `Hough space`, we can represent our "x vs. y" line as a point in "m vs. b". 
 
-![Hough space image](./misc/HoughSpace.jpg)
+![Hough space image](./misc/hough_space.jpg)
 
-The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
+The `Hough Transform` is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
 
 ######
 ```python
@@ -86,17 +86,20 @@ color_edges = np.dstack((masked_edges, masked_edges, masked_edges))
 combo = cv2.addWeighted(color_edges, 0.8, line_image, 1, 0)
 plt.imshow(combo)
 ```
-![canny edge image](./misc/houghTransform.png)
+![canny edge image](./misc/hough_transform.png)
 
 # Potential shortcomings with the pipeline
 
 The pipeline will not work:
 
 1. If the vehicle makes a sharp turn, it will not detect the lane lines.
-2. Abright sunlight on the  road may create an high contrast which may make itthe pipeline to detect the lane lines.
-3. Pot holes on the road may seem like lane lines therefore the detection of them might be incorrect.
+2. If there's a lot of pot holes on the road. Pot holes may seem like lane lines which may confuse the pipeline.
+3. If more than 2 lines are identified on the road.
 
 # Possible Improvement to the Pipeline
+
+Train a deep neural network to identify what lane lines looks like.
+The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude pot holes.
 
 
 # Prerequisite
