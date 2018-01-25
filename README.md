@@ -14,7 +14,7 @@ In this project,lane lines can be detected in images or videos using Python and 
  # The Lane Finding Pipeline
 
  The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and applyied Gaussian smoothing to clean up any noise.
- [normal image]
+ ![original image](./misc/original.png)
 
 ###### Convert to Grayscale
 ```python
@@ -30,10 +30,12 @@ blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size), 0)
 ```
 The kernel_size for Gaussian smoothing to be any odd number.
 A larger kernel_size implies averaging, or smoothing, over a larger area.
-[grayscale image]
+![grayscale image](./misc/grayscale.png)
 
 The second step is to use OpenCV Canny Edge detector.
 By applying Canny to the gray image we get the edges.
+
+
 
 ###### Apply Canny to get the edges images
 ```python
@@ -44,6 +46,8 @@ The Canny algorithm  will first detect strong edges pixel above
  Furthermore, pixels with values between the low_threshold and high_threshold
   are included as long as they are connected to strong edges. The output
  edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
+
+![canny edge image](./misc/cannyEdge.png)
 
 Then we apply a polygon mask to remove the unwatend areas in the image. Areas that are unlikely to contain the lane lines.
 ###### Four Side Polygon on Canny Edge image
@@ -85,7 +89,7 @@ color_edges = np.dstack((masked_edges, masked_edges, masked_edges))
 combo = cv2.addWeighted(color_edges, 0.8, line_image, 1, 0)
 plt.imshow(combo)
 ```
-
+![canny edge image](./misc/houghTransform.png)
 
 # Potential shortcomings with the pipeline
 
