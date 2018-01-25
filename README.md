@@ -5,51 +5,44 @@
 Overview
 ---
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are, act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
-In this project,lane lines can be detected in images or videos using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.
-
-
+In this project, lane lines can be detected in images or videos using Python and OpenCV.  OpenCV means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
 
  # The Lane Finding Pipeline
 
- The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and applyied Gaussian smoothing to clean up any noise.
  ![original image](./misc/original.jpg)
 
+ The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and to apply Gaussian smoothing to clean up any noise.
 ###### Convert to Grayscale
 ```python
 import cv2  #bringing in OpenCV libraries
 gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY) #grayscale conversion
 plt.imshow(gray, cmap='gray')
-
 ```
 ###### Apply a 5x5 Gaussian Smoothing
 ```python
 kernel_size = 5
 blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size), 0)
 ```
-The kernel_size for Gaussian smoothing to be any odd number.
+The kernel_size for Gaussian smoothing can be any odd number but for this project the kernel size is 5.
 A larger kernel_size implies averaging, or smoothing, over a larger area.
+
 ![grayscale image](./misc/grayscale.jpg)
 
-The second step is to use OpenCV Canny Edge detector.
-By applying Canny to the gray image we get the edges.
-
-
+The second step is to use OpenCV Canny Edge detector.By applying Canny to the gray image we get the edges.
+The Canny algorithm  will first detect strong edges pixel above the `high threshold` and reject pixels below the `low threshold`.
+ Moreover, pixels with values between the `low_threshold` and `high_threshold` are included as long as they are connected to strong edges. The output edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
 
 ###### Apply Canny to get the edges images
 ```python
 edges = cv2.Canny(gray, low_threshold, high_threshold)
 ```
-The Canny algorithm  will first detect strong edges pixel above
- the high threshold and reject pixels below the low threshold.
- Furthermore, pixels with values between the low_threshold and high_threshold
-  are included as long as they are connected to strong edges. The output
- edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
 
 ![canny edge image](./misc/cannyEdge.jpg)
 
-Then we apply a polygon mask to remove the unwatend areas in the image. Areas that are unlikely to contain the lane lines.
+Then we apply a polygon mask to remove unwanted areas in the image, areas that are unlikely to contain the lane lines.
+
 ###### Four Side Polygon on Canny Edge image
 ```python
     mask_edges = np.zeros_like(canny_edges)
@@ -59,8 +52,7 @@ Then we apply a polygon mask to remove the unwatend areas in the image. Areas th
     masked_edges = cv2.bitwise_and(canny_edges, mask_edges)
 ```
 
-At last we use Hough transform to identify the lane lines.In Hough space, I can represent my "x vs. y" line as a point in "m vs. b" instead.
-The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
+At last, we use the Hough Transform to identify the lane lines.In Hough space, we can represent our "x vs. y" line as a point in "m vs. b" instead. The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
 
 ######
 ```python
@@ -95,9 +87,9 @@ plt.imshow(combo)
 
 The pipeline will not work:
 
-1. If the car makes a sharp turn, there may not be a lot of marking lanes for identification
-2. Sunny sun light on the road may create high contrast on the road therefore causing low lane markings.
-3. Pot hole on the road may seem like lane mark therefore the identification of lane might be incorrect
+1. If the vehicle makes a sharp turn, it will not detect the lane lines.
+2. Abright sunlight on the  road may create an high contrast which may make itthe pipeline to detect the lane lines.
+3. Pot holes on the road may seem like lane lines therefore the detection of them might be incorrect.
 
 # Possible Improvement to the Pipeline
 
