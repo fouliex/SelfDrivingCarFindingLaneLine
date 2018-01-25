@@ -8,7 +8,7 @@
 
 When we drive, we use our eyes to decide where to go. The lines on the road that show us where the lanes are, act as our constant reference for where to steer the vehicle. Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
-In this project, lane lines can be detected in images or videos using `Python` and `OpenCV`.  `OpenCV` means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
+In this [Udacity clone project](https://github.com/udacity/CarND-LaneLines-P1), lane lines can be detected in images or videos using `Python` and `OpenCV`.  `OpenCV` means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
 
  # The Lane Finding Pipeline
  ![original image](./misc/original.jpg)
