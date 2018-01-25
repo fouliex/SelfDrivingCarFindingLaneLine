@@ -93,13 +93,13 @@ plt.imshow(combo)
 The pipeline will not work:
 
 1. If the vehicle makes a sharp turn, it will not detect the lane lines.
-2. If there's a lot of pot holes on the road. Pot holes may seem like lane lines which may confuse the pipeline.
+2. If there's a lot of potholes on the road. Potholes may seem like lane lines which may confuse the pipeline.
 3. If more than 2 lines are identified on the road.
 
 # Possible Improvement to the Pipeline
 
 Train a deep neural network to identify what lane lines looks like.
-The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude pot holes.
+The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude potholes.
 
 
 # Prerequisite
