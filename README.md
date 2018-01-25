@@ -11,9 +11,10 @@ When we drive, we use our eyes to decide where to go. The lines on the road that
 In this project, lane lines can be detected in images or videos using `Python` and `OpenCV`.  `OpenCV` means "Open-Source Computer Vision," which is a package that has many useful tools for analyzing images.
 
  # The Lane Finding Pipeline
-The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and to second step is to apply Gaussian smoothing to clean up any noise.
-
  ![original image](./misc/original.jpg)
+ 
+The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and the second step is to apply Gaussian smoothing to clean up any noise.
+
 ###### Convert to Grayscale
 ```python
 import cv2  #bringing in OpenCV libraries
@@ -52,7 +53,11 @@ The fourth is to apply a polygon mask to remove unwanted areas in the image, suc
     masked_edges = cv2.bitwise_and(canny_edges, mask_edges)
 ```
 
-The fith step is to apply Hough Transform to identify the lane lines. In Hough space, we can represent our "x vs. y" line as a point in "m vs. b" instead. The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
+The fith step is to apply `Hough Transform` to identify the lane lines. In `Hough space`, we can represent our "x vs. y" line as a point in "m vs. b". 
+
+![Hough space image](./misc/HoughSpace.jpg)
+
+The Hough Transform is just the conversion from image space to Hough space. So, the characterization of a line in image space will be a single point at the position (m, b) in Hough space.
 
 ######
 ```python
