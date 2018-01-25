@@ -30,7 +30,7 @@ blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size), 0)
 ```
 The kernel_size for Gaussian smoothing to be any odd number.
 A larger kernel_size implies averaging, or smoothing, over a larger area.
-![grayscale image](./misc/grayscale.png)
+![grayscale image](./misc/grayscale.jpg)
 
 The second step is to use OpenCV Canny Edge detector.
 By applying Canny to the gray image we get the edges.
@@ -47,7 +47,7 @@ The Canny algorithm  will first detect strong edges pixel above
   are included as long as they are connected to strong edges. The output
  edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
 
-![canny edge image](./misc/cannyEdge.png)
+![canny edge image](./misc/cannyEdge.jpg)
 
 Then we apply a polygon mask to remove the unwatend areas in the image. Areas that are unlikely to contain the lane lines.
 ###### Four Side Polygon on Canny Edge image
@@ -93,9 +93,9 @@ plt.imshow(combo)
 
 # Potential shortcomings with the pipeline
 
-The pipeline will fail if
+The pipeline will not work:
 
-1. The car makes a sharp turn, there may not be a lot of marking lanes for identification
+1. If the car makes a sharp turn, there may not be a lot of marking lanes for identification
 2. Sunny sun light on the road may create high contrast on the road therefore causing low lane markings.
 3. Pot hole on the road may seem like lane mark therefore the identification of lane might be incorrect
 
