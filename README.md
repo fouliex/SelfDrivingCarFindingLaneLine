@@ -13,7 +13,7 @@ In this [Udacity clone project](https://github.com/udacity/CarND-LaneLines-P1), 
  # The Lane Finding Pipeline
  ![original image](./misc/original.jpg)
  
-The Pipeline consist of 5 steps.The first step is to convert the image to grayscale and the second step is to apply Gaussian smoothing to clean up any noise.
+The Pipeline consist of 5 steps. The first step is to convert the image to grayscale and the second step is to apply Gaussian smoothing to clean up any noise.
 
 ###### Convert to Grayscale
 ```python
@@ -26,13 +26,13 @@ plt.imshow(gray, cmap='gray')
 kernel_size = 5
 blur_gray = cv2.GaussianBlur(gray,(kernel_size, kernel_size), 0)
 ```
-The kernel_size for Gaussian smoothing can be any odd number but for this project the kernel size is 5.
-A larger kernel_size implies averaging, or smoothing, over a larger area.
+The `kernel size` for `Gaussian smoothing` can be any odd number but for this project the kernel size is 5.
+A larger kernel size implies averaging, or smoothing, over a larger area.
 
 ![grayscale image](./misc/grayscale.jpg)
 
-The third step is to apply OpenCV Canny Edge Detector. By applying Canny to the gray image we get the edges from the image.
-The Canny algorithm  will first detect strong edges pixel above the `high threshold` and reject pixels below the `low threshold`.
+The third step is to apply OpenCV `Canny Edge Detector`. By applying it to the gray image we get the edges from the image.
+The `Canny` algorithm  will first detect strong edges pixel above the `high threshold` and reject pixels below the `low threshold`.
 Moreover, pixels with values between the `low_threshold` and `high_threshold` are included as long as they are connected to strong edges. The output edges is a binary image with white pixels tracing out the detected edges and black everywhere else.
 
 ###### Apply Canny to get the edges images
