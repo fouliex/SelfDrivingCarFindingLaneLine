@@ -1,6 +1,8 @@
-# **Finding Lane Lines on the Road** 
 
-<img src="misc/LaneLinesPass.gif" width="480" alt="Combined Image" />
+[//]: # (Image References)
+[image_0]: ./misc/LaneLinesPass.gif
+# Finding Lane Lines on the Road
+![alt text][image_0] 
 
 # Overview
 
