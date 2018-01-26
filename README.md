@@ -88,6 +88,18 @@ plt.imshow(combo)
 ```
 ![canny edge image](./misc/hough_transform.png)
 
+# The draw_lines method
+
+The draw_lines method has been updated to average the line segments detected to map out the full extent of
+both right and left lanes on the road. By Calculating the average b and m weighted using the left and right hypotenuse, we can draw the 
+new and right lines with color and thickness on the road.
+
+![Solid Yellow Curve](./misc/solidYellowCurve.jpg)
+
+######
+def draw_lines()
+
+
 # Potential shortcomings with the pipeline
 
 The pipeline will not work:
@@ -96,16 +108,16 @@ The pipeline will not work:
 2. If there's a lot of potholes on the road. Potholes may seem like lane lines which may confuse the pipeline.
 3. If more than 2 lines are identified on the road.
 
+
 # Possible Improvement to the Pipeline
 
-Train a deep neural network to identify what lane lines looks like.
-The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude potholes.
-
+1. Train a deep neural network to identify what lane lines looks like.
+2. The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude potholes.
+3. Add more then 1 camera
 
 # Prerequisite
 1. Install the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md)
-2. Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7)
-3. Open the code in a Jupyter Notebook.Jupyter is an Ipython notebook where we can run blocks of code and see results interactively.  All the code for this project is contained in  the Jupyter notebook.
+2. Open the code in a Jupyter Notebook.Jupyter is an Ipython notebook where we can run blocks of code and see results interactively.  All the code for this project is contained in  the Jupyter notebook.
 To start Jupyter in your browser, use terminal to navigate to the project directory and then run the following command at the terminal prompt (be sure Python 3 carnd-term1 environment is activated)
 * `> jupyter notebook`
 
