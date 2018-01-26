@@ -90,14 +90,9 @@ plt.imshow(combo)
 
 # The draw_lines method
 
-After getting the Hough Transform, the draw_lines method has been updated and used to average the line segments detected to map out the full extent of
-both right and left lanes on the road. By Calculating the average b and m weighted using the left and right hypotenuse, we can draw the 
-new and right lines with color and thickness on the road.
+After getting the Hough Transform, the draw_lines method has been updated and used to average the line segments detected to map out the full extent of both, right and left, lanes on the road. By Calculating the average b and m weighted using the left and right hypotenuse, we can draw the new left and right lines with color and thickness on the road.
 
 ![Solid Yellow Curve](./misc/solidYellowCurve.jpg)
-
-######
-def draw_lines()
 
 
 # Potential shortcomings with the pipeline
@@ -112,8 +107,7 @@ The pipeline will not work:
 # Possible Improvement to the Pipeline
 
 1. Train a deep neural network to identify what lane lines looks like.
-2. The model will be suitable for sharp turn or quick change in lanes and it will be tuned to exclude potholes.
-3. Add more then 1 camera
+2. Ehhance The model to be suitable for sharp turn or quick change in lanes and to exclude potholes.
 
 # Prerequisite
 1. Install the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md)
