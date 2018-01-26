@@ -90,7 +90,7 @@ plt.imshow(combo)
 
 # The draw_lines method
 
-The draw_lines method has been updated to average the line segments detected to map out the full extent of
+After getting the Hough Transform, the draw_lines method has been updated and used to average the line segments detected to map out the full extent of
 both right and left lanes on the road. By Calculating the average b and m weighted using the left and right hypotenuse, we can draw the 
 new and right lines with color and thickness on the road.
 
